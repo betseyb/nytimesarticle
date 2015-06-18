@@ -65,11 +65,12 @@ class articleAPI(object):
             for k,v in d.items():
                 if isinstance(v, list):
                     d[k] = ' '.join(map(lambda x: '"' + x + '"', v))
+                    d[k] = '(%s)' % d[k]
                 else:
                     d[k] = '"' + v + '"'
             values = []
             for k,v in d.items():
-                value = '%s:(%s)' % (k,v)
+                value = '%s:%s' % (k,v)
                 values.append(value)
             values = ' AND '.join(values)
             return values
